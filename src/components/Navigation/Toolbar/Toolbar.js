@@ -6,7 +6,11 @@ import NavigationsItems from '../NavigationItems/NavigationItems';
 const toolbar = props => {
   return (
     <header className={classes.Toolbar}>
-      <div>Menu</div>
+      <div className={classes.DrawerToggle} onClick={props.hideShowSideMenu}>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
       <div className={classes.Logo}>
         <Logo />
       </div>
