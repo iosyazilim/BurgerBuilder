@@ -1,8 +1,8 @@
 import React from 'react';
-import Aux from '../hoc/HighOrderAux';
-import Toolbar from '../Navigation/Toolbar/Toolbar';
+import Aux from '../HocAux/HighOrderAux';
+import Toolbar from '../../Navigation/Toolbar/Toolbar';
 import classes from './Layout.module.css';
-import SideDrawer from '../Navigation/SideDrawer/SideDrawer';
+import SideDrawer from '../../Navigation/SideDrawer/SideDrawer';
 
 class Layout extends React.Component {
   state = {
@@ -12,7 +12,7 @@ class Layout extends React.Component {
   sideDrawerCloseHandler = () => {
   this.setState({
     showSideDrawer: false,
-  });  
+  }); 
   }
 
   hideShowSideMenuHandler = () => {

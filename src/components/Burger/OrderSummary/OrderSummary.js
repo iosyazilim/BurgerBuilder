@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
-import Aux from '../../hoc/HighOrderAux';
+import Aux from '../../hoc/HocAux/HighOrderAux';
 import Button from '../../UI/Button/Button';
 
 class OrderSummary  extends Component{
+  // ComponentWillUpdate Class Components can not be used [UNSAFE], functional component can be used.
   componentWillUpdate() {
     console.log('Order Summary Will Update')
   }
