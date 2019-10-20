@@ -13,7 +13,7 @@ const sideDrawer = props => {
   return (
     <HigerOrderAux>
       <Backdrop show={props.open} clicked={props.closed}/>
-      <div className={attachedClasses}>
+      <div className={attachedClasses.join(' ')}>
         <div className={classes.Logo}>
           <Logo />
         </div>
