@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { Component } from 'react';
 import Layout from './components/hoc/Layout/Layout';
 import BugerBuilder from './containers/BurgerBuilder/BurgerBuilder';
 
-function App() {
+class App extends Component {
+  render() {
   return (
     <div>
       <Layout>
@@ -10,6 +11,7 @@ function App() {
       </Layout>
     </div>
   );
+ }
 }
 
 export default App;

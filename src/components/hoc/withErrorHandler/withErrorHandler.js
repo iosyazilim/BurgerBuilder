@@ -4,21 +4,33 @@ import Aux from '../HocAux/HighOrderAux';
 
 const withErrorHandler = (WrappedComponent, axios) => {
   return class extends React.Component {
-    state = {
-      error: null
-    };
-    componentDidMount() {
-      axios.interceptors.request.use(request => {
+    constructor(props) {
+      super(props);
+
+      this.reqInterceptor = axios.interceptors.request.use(request => {
         this.setState({
           error: null
         });
         return request;
       });
-      axios.interceptors.response.use(res => res, error => {
-        this.setState({
-          error: error
-        });
-      });
+      this.resInterceptor = axios.interceptors.response.use(
+        res => res,
+        error => {
+          this.setState({
+            error: error
+          });
+        }
+      );
+
+      this.state = {
+        error: null
+      };
+    }
+
+    componentWillUnmount() {
+        console.log('Will Unmount', this.reqInterceptor, this.resInterceptor);
+        axios.interceptors.request.eject(this.reqInterceptor);
+        axios.interceptors.response.eject(this.resInterceptor);
     }
 
     errorConfirmedHandler = () => {
@@ -28,9 +40,13 @@ const withErrorHandler = (WrappedComponent, axios) => {
     };
 
     render() {
+        const {error} = this.state;
       return (
         <Aux>
-          <Modal show={this.state.error} modalClosed={this.errorConfirmedHandler}>
+          <Modal
+            show={error}
+            modalClosed={this.errorConfirmedHandler}
+          >
             {this.state.error ? this.state.error.message : null}
           </Modal>
           <WrappedComponent {...this.props} />
